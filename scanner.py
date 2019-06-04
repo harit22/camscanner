@@ -2,6 +2,7 @@ import cv2
 import imutils
 from skimage.filters import threshold_local
 import numpy as np
+import argparse
 
 ##TAKEN THIS FUNCTION FROM PYIMAGE##
 def four_point_transform(image, rect):
@@ -43,7 +44,10 @@ def four_point_transform(image, rect):
 
 
 #taking input
-img = cv2.imread("/home/harit/Desktop/IMG_20190403_152526405.jpg")
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--image", required = True, help = "Path of image")
+args = vars(ap.parse_args())
+img = cv2.imread(args["image"])
 img = cv2.resize(img,(500,500))
 copy_img = img.copy()
 cp_img = img.copy()
